@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { fetchPosts } from '../actions/index';
 
 class PostIndex extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchPosts();
   }
 

@@ -1,4 +1,4 @@
-import { FETCH_POSTS, FETCH_POST } from '../actions';
+import { FETCH_POSTS, FETCH_POST, POST_CREATED } from '../actions';
 
 export default function(state = [], action) {
   switch (action.type) {
@@ -7,6 +7,9 @@ export default function(state = [], action) {
     }
     case FETCH_POST: {
       return [action.payload];
+    }
+    case POST_CREATED: {
+      return action.payload
     }
     default:
       return state;

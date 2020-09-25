@@ -1,8 +1,14 @@
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchPosts } from '../actions/index';
 
 class PostIndex extends Component {
+  componentWillMount() {
+    this.props.fetchPosts();
+  }
+
   renderPosts() {
     return this.props.posts.map((post) => {
       return (
@@ -22,7 +28,7 @@ class PostIndex extends Component {
         <div className="first-row">
           <h3>Blog</h3>
           <Link className="btn btn-primary btn-cta" to="/posts/new">
-            Let's write a post!
+            Write a post!
           </Link>
         </div>
         {this.renderPosts()}
@@ -37,4 +43,8 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(PostIndex);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchPosts }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostIndex);
